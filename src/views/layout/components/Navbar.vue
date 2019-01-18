@@ -26,6 +26,7 @@ export default {
       this.$confirm('确认退出登录？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
+        center: true,
         type: 'warning'
       }).then(() => {
         this.$store.dispatch('user/FedLogOut').then(() => {

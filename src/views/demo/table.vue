@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div style="padding: 20px;">
     <yxtable :table="table"/>
   </div>
 </template>
