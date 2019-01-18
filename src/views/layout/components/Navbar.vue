@@ -1,8 +1,13 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
-    <h2 class="title">遥诺科技-平台管理中心</h2>
-    <div class="avatar-container" trigger="click">
-      {{ name }}
+    <h2 class="title">
+      <router-link to="/">XXXX-XX管理中心</router-link>
+    </h2>
+    <div class="avatar-container">
+      <div class="log">更新日志</div>
+      <div class="username" title="退出登录" @click="onUserClick">
+        {{ userInfo.name }}
+      </div>
     </div>
   </el-menu>
 </template>
@@ -13,13 +18,20 @@ import { mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters([
-      'name'
+      'userInfo'
     ])
   },
   methods: {
-    logout() {
-      this.$store.dispatch('LogOut').then(() => {
-        location.reload() // 为了重新实例化vue-router对象 避免bug
+    onUserClick() {
+      this.$confirm('确认退出登录？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch('FedLogOut').then(() => {
+          location.reload()
+        })
+      }).catch(() => {
       })
     }
   }
@@ -32,17 +44,35 @@ export default {
     height: $height;
     line-height: $height;
     border-radius: 0px !important;
-    background: #1bbc9b;
+    background: #304156;
     .title {
       display: inline-block;
       margin: 0;
+      color: #fff;
       padding-left: 1em;
     }
     .avatar-container {
-      height: $height;
-      display: inline-block;
       position: absolute;
-      right: 35px;
+      right: 0;
+      display: inline-block;
+      color: #fff;
+      div {
+        display: inline-block;
+        cursor: pointer;
+      }
+      .log {
+        font-size: 0.8em;
+        &:hover {
+          color: gray;
+        }
+      }
+      .username {
+        padding: 0 35px;
+        transition: color 300ms;
+        &:hover {
+          color: gray;
+        }
+      }
     }
   }
 </style>

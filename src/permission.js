@@ -2,8 +2,13 @@ import router from './router'
 import store from './store'
 import NProgress from 'nprogress' // Progress 进度条
 import 'nprogress/nprogress.css'// Progress 进度条样式
-import { Message } from 'element-ui'
 import { getToken } from '@/utils/auth' // 验权
+
+// permissiom judge function
+function hasPermission(roles, permissionRoles) {
+  if (!permissionRoles) return true
+  return roles.some(role => permissionRoles.indexOf(role) >= 0)
+}
 
 const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
@@ -11,19 +16,44 @@ router.beforeEach((to, from, next) => {
   if (getToken()) {
     if (to.path === '/login') {
       next({ path: '/' })
-      NProgress.done() // if current page is dashboard will not trigger	afterEach hook, so manually handle it
+      NProgress.done()
     } else {
-      if (store.getters.roles.length === 0) {
-        store.dispatch('GetInfo').then(res => { // 拉取用户信息
-          next()
+      if (store.getters.roles === '') {
+        store.dispatch('user/GetInfo').then(res => {
+          if (res.code === 0) {
+            const roles = store.getters.roles
+            store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
+              router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
+              console.log('--------to.path--------')
+              console.log(to.path)
+              console.log('--------to.path--------')
+              if (to.path === '/') {
+                let toPath = ''
+                for (var i = 0; i < store.getters.addRouters.length; i++) {
+                  const item = store.getters.addRouters[i]
+                  if (item.children.length > 0) {
+                    toPath = item.children[0].path
+                    break
+                  }
+                }
+                router.push({ path: toPath })
+              } else {
+                next({ ...to, replace: true })
+              }
+            })
+          }
         }).catch((err) => {
-          store.dispatch('FedLogOut').then(() => {
-            Message.error(err || 'Verification failed, please login again')
+          console.log(err)
+          store.dispatch('user/FedLogOut').then(() => {
             next({ path: '/' })
           })
         })
       } else {
-        next()
+        if (hasPermission(store.getters.roles, to.meta.roles)) {
+          next()//
+        } else {
+          next({ path: '/401', replace: true, query: { noGoBack: true }})
+        }
       }
     }
   } else {

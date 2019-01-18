@@ -1,23 +1,20 @@
-import { login, logout, getInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const user = {
+  namespaced: true,
+
   state: {
     token: getToken(),
-    name: '',
-    avatar: '',
-    roles: []
+    userInfo: {},
+    roles: ''
   },
 
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
     },
-    SET_NAME: (state, name) => {
-      state.name = name
-    },
-    SET_AVATAR: (state, avatar) => {
-      state.avatar = avatar
+    SET_USERINFO: (state, userInfo) => {
+      state.userInfo = userInfo
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles
@@ -27,49 +24,46 @@ const user = {
   actions: {
     // 登录
     Login({ commit }, userInfo) {
-      const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
-        login(username, userInfo.password).then(response => {
-          const data = response.data
-          setToken(data.token)
-          commit('SET_TOKEN', data.token)
+        setTimeout(() => {
+          setToken('demoToken')
+          commit('SET_TOKEN', 'demotoken')
           resolve()
-        }).catch(error => {
-          reject(error)
-        })
+        }, 500)
+
+        // login(username, userInfo.password).then(response => {
+        //   const data = response.data
+        //   setToken(data.token)
+        //   commit('SET_TOKEN', data.token)
+        //   resolve()
+        // }).catch(error => {
+        //   reject(error)
+        // })
       })
     },
 
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
-        getInfo(state.token).then(response => {
-          const data = response.data
-          if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
-            commit('SET_ROLES', data.roles)
-          } else {
-            reject('getInfo: roles must be a non-null array !')
+        setTimeout(() => {
+          const res = {
+            code: 0,
+            data: {
+              name: 'admin',
+              roles: ['admin']
+            }
           }
-          commit('SET_NAME', data.name)
-          commit('SET_AVATAR', data.avatar)
-          resolve(response)
-        }).catch(error => {
-          reject(error)
-        })
-      })
-    },
-
-    // 登出
-    LogOut({ commit, state }) {
-      return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
-          commit('SET_TOKEN', '')
-          commit('SET_ROLES', [])
-          removeToken()
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
+          commit('SET_USERINFO', res.data)
+          commit('SET_ROLES', res.data.roles)
+          resolve(res)
+        }, 500)
+        // getInfo(state.token).then(response => {
+        //   const data = response.data
+        //   commit('userInfo', data.userInfo)
+        //   resolve(response)
+        // }).catch(error => {
+        //   reject(error)
+        // })
       })
     },
 
