@@ -7,6 +7,7 @@
       :type="opt.type"
       :size="opt.size"
       :style="opt.style"
+      :icon="opt.icon"
       @click="opt.onclick">{{ opt.label }}
     </el-button>
   </div>

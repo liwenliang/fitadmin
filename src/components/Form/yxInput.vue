@@ -8,6 +8,7 @@
     :disabled="config.disabled"
     :size="config.size"
     :rows="config.rows"
+    :suffix-icon="config.icon"
     clearable
     @keyup.native.enter="onEnter"
     @blur="trimValue"/>
