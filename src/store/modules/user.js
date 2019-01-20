@@ -1,4 +1,5 @@
 import { getToken, setToken, removeToken } from '@/utils/auth'
+import { login, getInfo } from '@/api/login'
 
 const user = {
   namespaced: true,
@@ -25,45 +26,29 @@ const user = {
     // 登录
     Login({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          setToken('demoToken')
-          commit('SET_TOKEN', 'demotoken')
+        const userName = userInfo.userName
+        login(userName, userInfo.password).then(res => {
+          const data = res.data
+          setToken(data.token)
+          commit('SET_TOKEN', data.token)
           resolve()
-        }, 500)
-
-        // login(username, userInfo.password).then(response => {
-        //   const data = response.data
-        //   setToken(data.token)
-        //   commit('SET_TOKEN', data.token)
-        //   resolve()
-        // }).catch(error => {
-        //   reject(error)
-        // })
+        }).catch(error => {
+          reject(error)
+        })
       })
     },
 
     // 获取用户信息
-    GetInfo({ commit, state }) {
+    GetInfo({ commit }) {
       return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          const res = {
-            code: 0,
-            data: {
-              name: 'admin',
-              roles: ['admin']
-            }
-          }
-          commit('SET_USERINFO', res.data)
+        getInfo().then(res => {
+          const data = res.data
+          commit('SET_USERINFO', data.userInfo)
           commit('SET_ROLES', res.data.roles)
           resolve(res)
-        }, 500)
-        // getInfo(state.token).then(response => {
-        //   const data = response.data
-        //   commit('userInfo', data.userInfo)
-        //   resolve(response)
-        // }).catch(error => {
-        //   reject(error)
-        // })
+        }).catch(error => {
+          reject(error)
+        })
       })
     },
 

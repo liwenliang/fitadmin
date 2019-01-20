@@ -13,6 +13,7 @@ import store from './store'
 
 import '@/icons' // icon
 import '@/permission' // permission control
+import './mock' // simulation data
 
 Vue.use(ElementUI)
 
