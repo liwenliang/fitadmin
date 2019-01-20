@@ -86,7 +86,7 @@
         <template v-else-if="item.type==='val2btn'">
           <el-button
             v-for="(opt, idx) in item.options"
-            v-if="opt.isNot ? scope.row[opt.prop]!==opt.value : scope.row[opt.prop]===opt.value"
+            v-if="opt.isNot ? (opt.value && opt.value.indexOf(scope.row[opt.prop])===-1) : (opt.value && opt.value.indexOf(scope.row[opt.prop])>-1)"
             :key="idx"
             :disabled="opt.disabled"
             :plain="opt.plain"
@@ -139,11 +139,11 @@ export default {
   name: 'Yxtable',
   filters: {
     /**
-             * 过滤器,对应有值与title对应关系的数据进行映射
-             * @param map
-             * @param val
-             * @returns {*}
-             */
+       * 过滤器,对应有值与title对应关系的数据进行映射
+       * @param map
+       * @param val
+       * @returns {*}
+       */
     filterOperation(val, map, style) {
       for (var i = 0; i < map.length; i++) {
         var cur = map[i]
@@ -157,10 +157,10 @@ export default {
       return '暂无'
     },
     /*
-            *
-            * 过滤器，将时间戳转成时间格式 2017-02-09 20:22:14
-            *
-            * */
+              *
+              * 过滤器，将时间戳转成时间格式 2017-02-09 20:22:14
+              *
+              * */
     setDateTime(val) {
       var newdate = ''
       if (val) {
@@ -203,9 +203,9 @@ export default {
 
   methods: {
     /**
-             * 获取当前属性，如果通过.连接，需要下方属性
-             * 目前只支持普通属性的展示使用
-             */
+       * 获取当前属性，如果通过.连接，需要下方属性
+       * 目前只支持普通属性的展示使用
+       */
     getCurrentProp(row, prop) {
       var resArr = prop.split('.')
       var result = ''
@@ -220,8 +220,8 @@ export default {
       }
     },
     /**
-             * 自定义过滤器
-             */
+       * 自定义过滤器
+       */
     customFilter(val, item, row) {
       if (item && item.filter) {
         return item.filter(val, row)

@@ -174,27 +174,27 @@ export default {
             options: [
               {
                 prop: 'status',
-                value: '1',
+                value: ['1'],
                 title: '已买',
                 onClick: this.onClick
               },
               {
                 prop: 'status',
-                value: '1',
+                value: ['1'],
                 title: '再次购买',
                 type: 'primary',
                 onClick: this.buyAgain
               },
               {
                 prop: 'status',
-                value: '1',
+                value: ['1'],
                 title: '评价',
                 type: 'warn',
                 onClick: this.discuss
               },
               {
                 prop: 'status',
-                value: '2',
+                value: ['2'],
                 title: '未购买,点击购买',
                 type: 'primary',
                 onClick: this.onClick
