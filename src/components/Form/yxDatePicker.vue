@@ -12,6 +12,7 @@
     :format="config.format"
     :size="config.size"
     :value-format="config.valueFormat"
+    @change="onChange"
   />
 </template>
 
@@ -38,6 +39,11 @@ export default {
   },
   data() {
     return {}
+  },
+  methods: {
+    onChange(env) {
+      this.config.onChange && this.config.onChange.call(null, env)
+    }
   }
 }
 </script>
