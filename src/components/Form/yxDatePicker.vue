@@ -12,6 +12,8 @@
     :format="config.format"
     :size="config.size"
     :value-format="config.valueFormat"
+    :clearable="config.clearable"
+    unlink-panels
     @change="onChange"
   />
 </template>
