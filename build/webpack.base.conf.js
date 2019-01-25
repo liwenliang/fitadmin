@@ -103,5 +103,15 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
+  },
+  performance: {
+    hints: false
+  },
+  externals: {
+    'vue': 'Vue',
+    'element-ui': 'ELEMENT',
+    'vuex': 'Vuex',
+    'vue-router': 'VueRouter',
+    'axios': 'axios'
   }
 }
