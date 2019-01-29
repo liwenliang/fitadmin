@@ -1,15 +1,15 @@
-import Cookies from 'js-cookie'
+import store from 'store'
 
 const TokenKey = 'fit-admin-token'
 
 export function getToken() {
-  return Cookies.get(TokenKey)
+  return store.get(TokenKey)
 }
 
 export function setToken(token) {
-  return Cookies.set(TokenKey, token)
+  return store.set(TokenKey, token)
 }
 
 export function removeToken() {
-  return Cookies.remove(TokenKey)
+  return store.remove(TokenKey)
 }
