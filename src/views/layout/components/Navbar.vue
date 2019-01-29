@@ -1,7 +1,7 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <h2 class="title">
-      <router-link to="/">XXXX-XX管理中心</router-link>
+      <router-link :to="addRouters[0].path">XXXX-XX管理中心</router-link>
     </h2>
     <div class="avatar-container">
       <div class="log">更新日志</div>
@@ -18,6 +18,7 @@ import { mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters([
+      'addRouters',
       'userInfo'
     ])
   },
