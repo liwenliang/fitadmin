@@ -118,7 +118,7 @@
         <template v-else-if="item.type==='customFilter'">
           <div
             @click="item.onClick && item.onClick(scope.$index, scope.row, $event)"
-            v-html="customFilter(scope.row[item.prop], item, scope.row)"/>
+            v-html="customFilter(scope.row[item.prop], item, scope.row, scope.$index)"/>
         </template>
         <template v-else-if="item.type==='progress'">
           <el-progress :percentage="getCurrentProp(scope.row, item.prop)"/>
@@ -222,9 +222,9 @@ export default {
     /**
        * 自定义过滤器
        */
-    customFilter(val, item, row) {
+    customFilter(val, item, row, idx) {
       if (item && item.filter) {
-        return item.filter(val, row)
+        return item.filter(val, row, idx)
       } else {
         return val
       }
