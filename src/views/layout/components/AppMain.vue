@@ -22,8 +22,11 @@ export default {
 <style scoped>
 .app-main {
   /*50 = navbar  */
-  max-height: calc(100vh - 60px);
+  max-height: calc(100vh - 60px - 2em);
   position: relative;
   overflow: auto;
+  background: white;
+  padding: 1em;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
 }
 </style>
