@@ -1,5 +1,5 @@
 <template>
-  <div :class="classObj" class="app-wrapper">
+  <div class="app-wrapper">
     <navbar/>
     <sidebar class="sidebar-container"/>
     <div class="main-container">
@@ -17,21 +17,6 @@ export default {
     Navbar,
     Sidebar,
     AppMain
-  },
-  computed: {
-    device() {
-      return this.$store.state.app.device
-    },
-    classObj() {
-      return {
-        mobile: this.device === 'mobile'
-      }
-    }
-  },
-  methods: {
-    handleClickOutside() {
-      this.$store.dispatch('CloseSideBar', { withoutAnimation: false })
-    }
   }
 }
 </script>
