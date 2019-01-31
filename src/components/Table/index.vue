@@ -8,9 +8,9 @@
     style="width:100%;"
     size="small"
     @sort-change="table.sortChange"
-    @selection-change="table.select.selectChange">
+    @selection-change="table.select && table.select.selectChange">
     <el-table-column
-      v-if="table.select.isSelectable"
+      v-if="table.select && table.select.isSelectable"
       :selectable="table.select.selectable"
       type="selection"
       width="40"/>
