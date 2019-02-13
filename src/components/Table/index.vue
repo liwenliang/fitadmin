@@ -145,6 +145,9 @@ export default {
        * @returns {*}
        */
     filterOperation(val, map, style) {
+      if (val === null) {
+        return '暂无'
+      }
       for (var i = 0; i < map.length; i++) {
         var cur = map[i]
         if (cur.value.toString() === val.toString()) {
