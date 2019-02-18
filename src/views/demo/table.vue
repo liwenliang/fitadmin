@@ -1,6 +1,6 @@
 <template>
   <div style="padding: 20px;">
-    <yxtable :table="table"/>
+    <yxtable ref="demoTable" :table="table"/>
   </div>
 </template>
 
@@ -214,24 +214,7 @@ export default {
             label: 'tags',
             type: 'tags',
             width: '280',
-            options: [
-              {
-                value: '1',
-                label: 'web'
-              },
-              {
-                value: '2',
-                label: 'phone'
-              },
-              {
-                value: '3',
-                label: '超级手机'
-              },
-              {
-                value: '4',
-                label: 'pad'
-              }
-            ]
+            options: []
           },
           {
             prop: 'datetime',
@@ -258,7 +241,27 @@ export default {
       }
     }
   },
-  created() {
+  mounted() {
+    setTimeout(() => {
+      this.$refs.demoTable.setOptions('tags', [
+        {
+          value: '1',
+          label: 'web'
+        },
+        {
+          value: '2',
+          label: 'phone'
+        },
+        {
+          value: '3',
+          label: '超级手机'
+        },
+        {
+          value: '4',
+          label: 'pad'
+        }
+      ])
+    }, 0)
   },
   methods: {
     /**

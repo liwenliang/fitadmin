@@ -1,6 +1,7 @@
 <template>
   <div style="padding: 20px;">
     <yxform
+      ref="demoForm"
       :emit-validate="form.emitValidate"
       :emit-reset="form.emitReset"
       :form="form"/>
@@ -34,7 +35,7 @@ export default {
         labelPosition: 'right',
         props: {
           name: '一下科技',
-          sex: '',
+          sex: '1',
           age: 7,
           birthday: '',
           hobby: ['2', '3'],
@@ -75,18 +76,7 @@ export default {
             config: {
               disabled: false,
               style: 'width: 220px;',
-              options: [
-                {
-                  label: '男',
-                  value: '0',
-                  disabled: false
-                },
-                {
-                  label: '女',
-                  value: '1',
-                  disabled: false
-                }
-              ]
+              options: []
             }
           },
           {
@@ -214,6 +204,22 @@ export default {
         ]
       }
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.$refs.demoForm.setOptions('sex', [
+        {
+          label: '男',
+          value: '0',
+          disabled: false
+        },
+        {
+          label: '女',
+          value: '1',
+          disabled: false
+        }
+      ])
+    }, 0)
   },
   methods: {
     onsubmit() {

@@ -139,11 +139,8 @@ export default {
   name: 'Yxtable',
   filters: {
     /**
-       * 过滤器,对应有值与title对应关系的数据进行映射
-       * @param map
-       * @param val
-       * @returns {*}
-       */
+     * 过滤器,对应有值与title对应关系的数据进行映射
+     */
     filterOperation(val, map, style) {
       if (val === null) {
         return '暂无'
@@ -159,11 +156,10 @@ export default {
       }
       return '暂无'
     },
-    /*
-              *
-              * 过滤器，将时间戳转成时间格式 2017-02-09 20:22:14
-              *
-              * */
+
+    /**
+     * 过滤器，将时间戳转成时间格式 2017-02-09 20:22:14
+     */
     setDateTime(val) {
       var newdate = ''
       if (val) {
@@ -187,6 +183,7 @@ export default {
     lepopver: lepopver,
     letooltip: letooltip
   },
+
   props: {
     table: {
       type: Object,
@@ -206,9 +203,9 @@ export default {
 
   methods: {
     /**
-       * 获取当前属性，如果通过.连接，需要下方属性
-       * 目前只支持普通属性的展示使用
-       */
+     * 获取当前属性，如果通过.连接，需要下方属性
+     * 目前只支持普通属性的展示使用
+     */
     getCurrentProp(row, prop) {
       var resArr = prop.split('.')
       var result = ''
@@ -222,20 +219,32 @@ export default {
         return result
       }
     },
+
     /**
-       * 自定义过滤器
-       */
+     * 自定义过滤器
+     */
     customFilter(val, item, row, idx) {
       if (item && item.filter) {
         return item.filter(val, row, idx)
       } else {
         return val
       }
+    },
+
+    /**
+     * 可以通过使用this.$refs.xxx.setOptions设置某项的options
+     * 例如mapList的选项是异步获取的，这时候可以在mounted后执行该组件方法
+     * @param prop 表单项对应的prop
+     * @param options 表单项config下的options，label value形式
+     */
+    setOptions(prop, options) {
+      for (var i = 0; i < this.table.attributes.length; i++) {
+        const item = this.table.attributes[i]
+        if (item.prop === prop) {
+          item.options = options
+        }
+      }
     }
   }
 }
 </script>
-
-<style scoped>
-
-</style>
