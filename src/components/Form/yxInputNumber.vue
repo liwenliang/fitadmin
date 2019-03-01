@@ -6,6 +6,7 @@
     :min="config.min"
     :max="config.max"
     :size="config.size"
+    :precision="config.precision"
     :disabled="config.disabled"
     controls-position="right">
     @change="onChange"
