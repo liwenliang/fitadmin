@@ -2,11 +2,11 @@
   <el-table
     v-loading="loading"
     :data="table.data"
+    :size="table.size || 'small'"
     element-loading-text="加载中"
     border
     stripe
     style="width:100%;"
-    size="small"
     @sort-change="table.sortChange"
     @selection-change="table.select && table.select.selectChange">
     <el-table-column

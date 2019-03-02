@@ -3,6 +3,7 @@
     ref="leform"
     :model="form.props"
     :inline="form.inline"
+    :size="form.size"
     :label-position="form.labelPosition"
     :label-width="form.labelWidth">
     <template>
