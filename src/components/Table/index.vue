@@ -229,21 +229,6 @@ export default {
       } else {
         return val
       }
-    },
-
-    /**
-     * 可以通过使用this.$refs.xxx.setOptions设置某项的options
-     * 例如mapList的选项是异步获取的，这时候可以在mounted后执行该组件方法
-     * @param prop 表单项对应的prop
-     * @param options 表单项config下的options，label value形式
-     */
-    setOptions(prop, options) {
-      for (var i = 0; i < this.table.attributes.length; i++) {
-        const item = this.table.attributes[i]
-        if (item.prop === prop) {
-          item.options = options
-        }
-      }
     }
   }
 }
