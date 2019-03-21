@@ -1,6 +1,6 @@
 import store from 'store'
 
-const TokenKey = 'fit-admin-token'
+const TokenKey = 'vue-apicloud-token'
 
 export function getToken() {
   return store.get(TokenKey)

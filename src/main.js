@@ -1,7 +1,6 @@
 import Vue from 'vue'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 import App from './App'
 import router from './router'
