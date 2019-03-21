@@ -86,12 +86,8 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+          name: '../fonts/[name].[hash:7].[ext]'
         }
-      },
-      {
-        test: /\.pug$/,
-        loader: "pug-plain-loader"
       }
     ]
   },
@@ -110,12 +106,5 @@ module.exports = {
   },
   performance: {
     hints: false
-  },
-  externals: {
-    'vue': 'Vue',
-    'element-ui': 'ELEMENT',
-    'vuex': 'Vuex',
-    'vue-router': 'VueRouter',
-    'axios': 'axios'
   }
 }

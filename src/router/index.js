@@ -41,36 +41,5 @@ export default new Router({
 })
 
 export const asyncRouterMap = [
-  {
-    path: '/demo',
-    component: Layout,
-    redirect: '/demo/form',
-    name: 'DEMO',
-    meta: { title: 'DEMO', icon: 'nested', roles: ['admin'] },
-    children: [
-      {
-        path: '/demo/form',
-        component: () => import('@/views/demo/form'),
-        name: 'DemoForm',
-        meta: { title: '表单', icon: 'form', roles: ['admin'] }
-      },
-      {
-        path: '/demo/table',
-        component: () => import('@/views/demo/table'),
-        name: 'DemoTable',
-        meta: { title: '表格', icon: 'table', roles: ['admin'] }
-      }
-    ]
-  },
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://www.baidu.com',
-        meta: { title: '外部链接-baidu', icon: 'link', roles: ['admin'] }
-      }
-    ]
-  },
   { path: '*', redirect: '/404', hidden: true }
 ]

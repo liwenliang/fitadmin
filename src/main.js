@@ -1,21 +1,20 @@
 import Vue from 'vue'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
-
-import '@/styles/index.scss' // global css
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 import App from './App'
 import router from './router'
 import store from './store'
 
-import '@/icons' // icon
+import MuseUI from 'muse-ui'
+import 'muse-ui/dist/muse-ui.css'
+
 import '@/permission' // permission control
 
-if (process.env.NODE_ENV === 'development') {
-  require('./mock')
-}
+require('./mock')
 
-Vue.config.productionTip = false
+Vue.use(MuseUI)
 
 new Vue({
   el: '#app',

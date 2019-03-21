@@ -1,7 +1,29 @@
 <template>
-  <div class="dashboard-container">
-    <div class="dashboard-text">name:{{ userInfo.name }}</div>
-    <div class="dashboard-text">roles:<span v-for="role in userInfo.roles" :key="role">{{ role }}</span></div>
+  <div>
+    <div class="icon-container">
+      <mu-icon value="home"/>
+      <mu-icon value="flight_takeoff" color="red"/>
+      <mu-icon value="cloud_download" color="orange"/>
+      <mu-icon value="info" color="blue"/>
+    </div>
+    <div class="icon-container">
+      <mu-icon size="36" value="home"/>
+      <mu-icon size="36" value="flight_takeoff" color="red"/>
+      <mu-icon size="36" value="cloud_download" color="orange"/>
+      <mu-icon size="36" value="info" color="blue"/>
+    </div>
+    <div class="icon-container">
+      <mu-icon size="48" value="home"/>
+      <mu-icon size="48" value="flight_takeoff" color="red"/>
+      <mu-icon size="48" value="cloud_download" color="orange"/>
+      <mu-icon size="48" value="info" color="blue"/>
+    </div>
+    <div class="icon-container">
+      <mu-icon size="56" value="home"/>
+      <mu-icon size="56" value="flight_takeoff" color="red"/>
+      <mu-icon size="56" value="cloud_download" color="orange"/>
+      <mu-icon size="56" value="info" color="blue"/>
+    </div>
   </div>
 </template>
 
@@ -12,20 +34,10 @@ export default {
   name: 'Dashboard',
   computed: {
     ...mapGetters([
-      'userInfo'
     ])
   }
 }
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-.dashboard {
-  &-container {
-    margin: 30px;
-  }
-  &-text {
-    font-size: 30px;
-    line-height: 46px;
-  }
-}
 </style>

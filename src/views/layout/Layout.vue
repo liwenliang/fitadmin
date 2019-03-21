@@ -1,37 +1,36 @@
 <template>
   <div class="app-wrapper">
-    <navbar/>
-    <sidebar class="sidebar-container"/>
+    <mu-appbar style="width: 100%;" color="primary">
+      <mu-button slot="left" icon>
+        <mu-icon value="menu"/>
+      </mu-button>
+      标题
+      <mu-button slot="right" flat @click="doLogout">登出</mu-button>
+    </mu-appbar>
     <div class="main-container">
-      <app-main/>
+      <router-view :key="key"/>
     </div>
   </div>
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain } from './components'
-
 export default {
   name: 'Layout',
-  components: {
-    Navbar,
-    Sidebar,
-    AppMain
+  computed: {
+    key() {
+      return this.$route.name !== undefined ? this.$route.name + +new Date() : this.$route + +new Date()
+    }
+  },
+  methods: {
+    doLogout() {
+      this.$store.dispatch('user/FedLogOut').then(() => {
+        this.$router.push('/login')
+      })
+    }
   }
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
-  @import "src/styles/mixin.scss";
+<style scoped>
 
-  .app-wrapper {
-    @include clearfix;
-    position: relative;
-    height: 100%;
-    width: 100%;
-    .main-container {
-      padding: 1em;
-      background: #e9e9e9;
-    }
-  }
 </style>

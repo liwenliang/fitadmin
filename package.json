@@ -1,8 +1,8 @@
 {
-  "name": "fitadmin",
+  "name": "vue-apicloud",
   "version": "3.8.0",
   "license": "MIT",
-  "description": "在vue admin基础上重新调整适合自己项目的页面布局",
+  "description": "apicloud上使用vue",
   "author": "liwenliang <792831375@@qq.com>",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -14,9 +14,15 @@
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "material-design-icons-iconfont": "^4.0.5",
+    "muse-ui": "^3.0.2",
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",
-    "store": "^2.0.12"
+    "store": "^2.0.12",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.2",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
     "autoprefixer": "8.5.0",
@@ -51,22 +57,17 @@
     "postcss-import": "12.0.0",
     "postcss-loader": "2.1.6",
     "postcss-url": "7.3.2",
-    "pug": "^2.0.3",
-    "pug-plain-loader": "^1.0.0",
     "rimraf": "2.6.2",
     "sass-loader": "7.0.3",
     "script-ext-html-webpack-plugin": "2.0.1",
     "semver": "5.5.0",
     "shelljs": "0.8.2",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
     "svg-sprite-loader": "3.8.0",
-    "svgo": "1.0.5",
     "uglifyjs-webpack-plugin": "1.2.7",
     "url-loader": "1.0.1",
     "vue-loader": "15.3.0",
     "vue-style-loader": "4.1.2",
-    "vue-template-compiler": "2.5.17",
+    "vue-template-compiler": "^2.6.10",
     "webpack": "4.16.5",
     "webpack-bundle-analyzer": "2.13.1",
     "webpack-cli": "3.1.0",

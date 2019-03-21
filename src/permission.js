@@ -21,26 +21,7 @@ router.beforeEach((to, from, next) => {
       if (store.getters.roles === '') {
         store.dispatch('user/GetInfo').then(res => {
           if (res.code === 0) {
-            const roles = store.getters.roles
-            store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
-              router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
-              console.log('--------to.path--------')
-              console.log(to.path)
-              console.log('--------to.path--------')
-              if (to.path === '/') {
-                let toPath = ''
-                for (var i = 0; i < store.getters.addRouters.length; i++) {
-                  const item = store.getters.addRouters[i]
-                  if (item.children.length > 0) {
-                    toPath = item.children[0].path
-                    break
-                  }
-                }
-                router.push({ path: toPath })
-              } else {
-                next({ ...to, replace: true })
-              }
-            })
+            next({ path: '/' })
           }
         }).catch((err) => {
           console.log(err)
