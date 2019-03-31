@@ -41,6 +41,7 @@ export default {
   methods: {
     onEnter(env) {
       this.config.onEnter && this.config.onEnter.call(null, env)
+      env.preventDefault()
     },
 
     // 当输入框失去焦点时，要去掉字符两端的空格
