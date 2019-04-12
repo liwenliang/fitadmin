@@ -12,7 +12,10 @@
 </template>
 
 <script>
+import { cities } from '@/utils/cities.js'
 import yxform from '@/components/Form/index.vue'
+
+const defaultTime = '000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
 
 export default {
   components: {
@@ -30,7 +33,7 @@ export default {
         validateSuccess: this.validateSuccess,
         validateFaild: this.validateFaild,
         inline: false,
-        style: 'width: 500px',
+        // style: 'width: 500px',
         labelWidth: '120px',
         labelPosition: 'right',
         props: {
@@ -41,7 +44,8 @@ export default {
           hobby: ['2', '3'],
           likeColor: '#000000',
           city: 'Beijing',
-          dateRange: []
+          dateRange: [],
+          timePeriod: defaultTime
         },
         attributes: [
           {
@@ -69,6 +73,19 @@ export default {
             }
           },
           {
+            type: 'yxWeekTimeSelect',
+            prop: 'timePeriod',
+            label: '屏蔽时间段'
+          },
+          {
+            type: 'yxTree',
+            prop: 'areaCode',
+            label: '屏蔽地域',
+            config: {
+              options: cities
+            }
+          },
+          {
             type: 'yxSelect',
             prop: 'sex',
             label: '性别',
@@ -76,7 +93,18 @@ export default {
             config: {
               disabled: false,
               style: 'width: 220px;',
-              options: []
+              options: [
+                {
+                  label: '男',
+                  value: '0',
+                  disabled: false
+                },
+                {
+                  label: '女',
+                  value: '1',
+                  disabled: false
+                }
+              ]
             }
           },
           {
@@ -206,20 +234,6 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => {
-      this.$refs.demoForm.setOptions('sex', [
-        {
-          label: '男',
-          value: '0',
-          disabled: false
-        },
-        {
-          label: '女',
-          value: '1',
-          disabled: false
-        }
-      ])
-    }, 0)
   },
   methods: {
     onsubmit() {
@@ -248,8 +262,8 @@ export default {
 </script>
 
 <style scoped>
-    .codeList {
-        background: grey;
-        padding: 10px;
-    }
+  .codeList {
+    background: grey;
+    padding: 10px;
+  }
 </style>

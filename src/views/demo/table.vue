@@ -6,6 +6,7 @@
 
 <script>
 import yxtable from '@/components/Table/index.vue'
+import { cityMaps } from '@/utils/cities'
 
 export default {
   components: {
@@ -24,6 +25,7 @@ export default {
             photo: '//i2.letvimg.com/lc07_img/201701/05/20/58/avatar5.png',
             datetime: 1487695862000,
             tags: ['1', '2', '3', '4'],
+            areaCode: [130100, 130400],
             progress: 50
           },
           {
@@ -35,6 +37,7 @@ export default {
             photo: '//i2.letvimg.com/lc07_img/201701/05/20/58/avatar5.png',
             datetime: 1487692862000,
             tags: ['1', '2', '3', '4'],
+            areaCode: [130100, 130400],
             progress: 40
           },
           {
@@ -46,6 +49,7 @@ export default {
             photo: '//i2.letvimg.com/lc07_img/201701/05/20/58/avatar5.png',
             datetime: 1487693862000,
             tags: ['1', '2', '3', '4'],
+            areaCode: [140100, 140300, 140400],
             progress: 30
           },
           {
@@ -57,6 +61,7 @@ export default {
             photo: '//i2.letvimg.com/lc07_img/201701/05/20/58/avatar5.png',
             datetime: 1487694862000,
             tags: ['1', '2', '3', '4'],
+            areaCode: [130100, 130400],
             progress: 90
           }
         ],
@@ -98,6 +103,12 @@ export default {
                 label: '女'
               }
             ]
+          },
+          {
+            prop: 'areaCode',
+            type: 'tags',
+            label: '屏蔽地域',
+            options: cityMaps
           },
           {
             prop: 'name',
@@ -214,7 +225,24 @@ export default {
             label: 'tags',
             type: 'tags',
             width: '280',
-            options: []
+            options: [
+              {
+                value: '1',
+                label: 'web'
+              },
+              {
+                value: '2',
+                label: 'phone'
+              },
+              {
+                value: '3',
+                label: '超级手机'
+              },
+              {
+                value: '4',
+                label: 'pad'
+              }
+            ]
           },
           {
             prop: 'datetime',
@@ -240,28 +268,6 @@ export default {
         ]
       }
     }
-  },
-  mounted() {
-    setTimeout(() => {
-      this.$refs.demoTable.setOptions('tags', [
-        {
-          value: '1',
-          label: 'web'
-        },
-        {
-          value: '2',
-          label: 'phone'
-        },
-        {
-          value: '3',
-          label: '超级手机'
-        },
-        {
-          value: '4',
-          label: 'pad'
-        }
-      ])
-    }, 0)
   },
   methods: {
     /**
