@@ -1,4 +1,4 @@
-import yxInput from './yxinput.vue'
+import yxInput from './yxInput.vue'
 import yxSelect from './yxSelect.vue'
 import yxButton from './yxButton.vue'
 import yxDatePicker from './yxDatePicker.vue'
