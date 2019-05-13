@@ -10,12 +10,24 @@ function hasPermission(roles, permissionRoles) {
   return roles.some(role => permissionRoles.indexOf(role) >= 0)
 }
 
+function goFirstPermissionedRoute() {
+  let toPath = ''
+  for (var i = 0; i < store.getters.addRouters.length; i++) {
+    const item = store.getters.addRouters[i]
+    if (item.children.length > 0) {
+      toPath = item.children[0].path
+      break
+    }
+  }
+  router.push({ path: toPath })
+}
+
 const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
   NProgress.start()
   if (getToken()) {
-    if (to.path === '/login') {
-      next({ path: '/' })
+    if (whiteList.indexOf(to.path) !== -1) {
+      goFirstPermissionedRoute()
       NProgress.done()
     } else {
       if (store.getters.roles === '') {
@@ -24,19 +36,8 @@ router.beforeEach((to, from, next) => {
             const roles = store.getters.roles
             store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
               router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
-              console.log('--------to.path--------')
-              console.log(to.path)
-              console.log('--------to.path--------')
               if (to.path === '/') {
-                let toPath = ''
-                for (var i = 0; i < store.getters.addRouters.length; i++) {
-                  const item = store.getters.addRouters[i]
-                  if (item.children.length > 0) {
-                    toPath = item.children[0].path
-                    break
-                  }
-                }
-                router.push({ path: toPath })
+                goFirstPermissionedRoute()
               } else {
                 next({ ...to, replace: true })
               }
