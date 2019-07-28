@@ -2,6 +2,7 @@ import yxInput from './yxInput.vue'
 import yxSelect from './yxSelect.vue'
 import yxButton from './yxButton.vue'
 import yxDatePicker from './yxDatePicker.vue'
+import yxTimePicker from './yxTimePicker.vue'
 import yxInputNumber from './yxInputNumber.vue'
 import yxColorPicker from './yxColorPicker.vue'
 import yxGroupSelect from './yxGroupSelect.vue'
@@ -15,6 +16,7 @@ export default {
   yxSelect,
   yxButton,
   yxDatePicker,
+  yxTimePicker,
   yxInputNumber,
   yxColorPicker,
   yxGroupSelect,

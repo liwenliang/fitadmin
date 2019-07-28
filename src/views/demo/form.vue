@@ -45,6 +45,7 @@ export default {
           likeColor: '#000000',
           city: 'Beijing',
           dateRange: [],
+          timeRange: ['00:00', '23:59'],
           timePeriod: defaultTime
         },
         attributes: [
@@ -58,6 +59,18 @@ export default {
               valueFormat: 'yyyy-MM-dd',
               startPlaceholder: '开始日期',
               endPlaceholder: '结束日期'
+            }
+          },
+          {
+            type: 'yxTimePicker',
+            prop: 'timeRange',
+            label: '时间范围',
+            config: {
+              isRange: true,
+              format: 'HH:mm',
+              valueFormat: 'HH:mm',
+              startPlaceholder: '开始时间',
+              endPlaceholder: '结束时间'
             }
           },
           {
