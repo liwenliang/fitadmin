@@ -1,5 +1,5 @@
 <template>
-  <el-scrollbar wrap-class="scrollbar-wrapper" style="top: 60px;">
+  <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
       :show-timeout="200"
       :default-active="$route.path"

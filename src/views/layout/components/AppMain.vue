@@ -22,7 +22,7 @@ export default {
 <style scoped>
 .app-main {
   /*50 = navbar  */
-  max-height: calc(100vh - 60px - 2em);
+  height: calc(100vh - 60px - 2em);
   position: relative;
   overflow: auto;
   background: white;
