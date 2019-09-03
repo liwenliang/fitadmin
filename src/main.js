@@ -10,6 +10,7 @@ import store from './store'
 
 import '@/icons' // icon
 import '@/permission' // permission control
+import 'babel-polyfill'
 
 if (process.env.NODE_ENV === 'development') {
   require('./mock')
