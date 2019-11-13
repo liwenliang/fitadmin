@@ -9,7 +9,7 @@
       :style="opt.style"
       :icon="opt.icon"
       :disabled="opt.disabled"
-      @click="opt.onclick">{{ opt.label }}
+      @click="opt.onClick">{{ opt.label }}
     </el-button>
   </div>
 </template>

@@ -232,12 +232,12 @@ export default {
                 {
                   label: '提交',
                   type: 'primary',
-                  onclick: this.onsubmit
+                  onClick: this.onsubmit
                 },
                 {
                   label: '重置',
                   type: 'danger',
-                  onclick: this.onreset
+                  onClick: this.onreset
                 }
               ]
             }
