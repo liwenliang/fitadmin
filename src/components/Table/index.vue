@@ -7,7 +7,7 @@
     border
     stripe
     style="width:100%;"
-    @sort-change="table.sortChange"
+    @sort-change="table.sortChange||null"
     @selection-change="table.select && table.select.selectChange">
     <el-table-column
       v-if="table.select && table.select.isSelectable"
@@ -15,8 +15,7 @@
       type="selection"
       width="40"/>
     <el-table-column
-      v-for="item in table.attributes"
-      v-if="!item.isHide"
+      v-for="item in tableList"
       :key="item.label"
       :width="item.width"
       :fixed="item.fixed"
@@ -49,10 +48,10 @@
           </el-select>
         </template>
         <template v-else-if="item.type==='edit'">
-          <lepopver :scope="scope" :item="item"/>
+          <lepopver :scope="scope" :item="item" />
         </template>
         <template v-else-if="item.type==='tooltip'">
-          <letooltip :scope="scope" :item="item"/>
+          <letooltip :scope="scope" :item="item" />
         </template>
         <template v-else-if="item.type==='mapList'">
           <span :style="scope.row[item.prop] | filterOperation(item.options,1)">{{ scope.row[item.prop] | filterOperation(item.options) }}</span>
@@ -77,8 +76,9 @@
               :plain="opt.plain"
               :icon="opt.icon"
               :circle="opt.circle"
-              size="small"
-              @click="opt.onClick(scope.$index, scope.row)">
+              :size="opt.size||'small'"
+              @click="opt.onClick(scope.$index, scope.row)"
+            >
               {{ opt.title }}
             </el-button>
           </el-tooltip>
@@ -199,6 +199,13 @@ export default {
 
   data() {
     return {}
+  },
+  computed: {
+    tableList() {
+      return this.table.attributes.filter(item => {
+        return !item.isHide
+      })
+    }
   },
 
   methods: {

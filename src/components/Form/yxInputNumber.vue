@@ -8,10 +8,9 @@
     :size="config.size"
     :precision="config.precision"
     :disabled="config.disabled"
-    controls-position="right">
+    controls-position="right"
     @change="onChange"
-    @keyup.native.enter="onEnter"
-  </el-input-number>
+    @keyup.native.enter="onEnter"/>
 </template>
 
 <script>

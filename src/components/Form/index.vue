@@ -9,8 +9,7 @@
     <template>
       <!-- 默认情况就是输入框 -->
       <el-form-item
-        v-for="item in form.attributes"
-        v-if="!item.isHide"
+        v-for="item in formList"
         :key="item.prop"
         :label="item.label"
         :prop="item.prop"
@@ -90,6 +89,13 @@ export default {
         }
       },
       url: { type: 'url', message: '请输入正确网址类型值' }
+    }
+  },
+  computed: {
+    formList() {
+      return this.form.attributes.filter(item => {
+        return !item.isHide
+      })
     }
   },
   watch: {
