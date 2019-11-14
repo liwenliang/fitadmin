@@ -79,7 +79,7 @@ export default {
             label: '姓名',
             rules: ['required'],
             config: {
-              type: 'input',
+              type: 'text',
               placeholder: '请输入姓名',
               disabled: false,
               style: 'width: 220px;'

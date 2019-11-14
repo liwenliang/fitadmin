@@ -5,7 +5,8 @@
     :inline="form.inline"
     :size="form.size"
     :label-position="form.labelPosition"
-    :label-width="form.labelWidth">
+    :label-width="form.labelWidth"
+    @submit.native.prevent>
     <template>
       <!-- 默认情况就是输入框 -->
       <el-form-item
