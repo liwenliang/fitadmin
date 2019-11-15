@@ -3,7 +3,6 @@
     v-loading="loading"
     :data="table.data"
     :size="table.size || 'small'"
-    element-loading-text="加载中"
     border
     stripe
     style="width:100%;"
@@ -23,7 +22,8 @@
       :label="item.label"
       :sortable="item.sortable"
       :sort-method="item.sortMethod"
-      :formatter="item.formatter">
+      :formatter="item.formatter"
+      header-align="center">
       <template slot="header" slot-scope="scope">
         {{ item.label }}
         <el-tooltip v-if="item.tooltip" :content="item.tooltip" class="item" effect="dark" placement="top">
