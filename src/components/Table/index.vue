@@ -7,7 +7,7 @@
     stripe
     style="width:100%;"
     @sort-change="table.sortChange||null"
-    @selection-change="table.select && table.select.selectChange">
+    @selection-change="selectionChange($event, table.select)">
     <el-table-column
       v-if="table.select && table.select.isSelectable"
       :selectable="table.select.selectable"
@@ -235,6 +235,12 @@ export default {
         return item.filter(val, row, idx)
       } else {
         return val
+      }
+    },
+
+    selectionChange($event, select) {
+      if (select && select.selectChange) {
+        select.selectChange($event)
       }
     }
   }
