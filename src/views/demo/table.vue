@@ -1,17 +1,13 @@
 <template>
   <div style="padding: 20px;">
-    <yxtable ref="demoTable" :table="table"/>
+    <yxtable ref="demoTable" :table="table" />
   </div>
 </template>
 
 <script>
-import yxtable from '@/components/Table/index.vue'
 import { cityMaps } from '@/utils/cities'
 
 export default {
-  components: {
-    yxtable
-  },
   data() {
     return {
       table: {

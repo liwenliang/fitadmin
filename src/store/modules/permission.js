@@ -34,6 +34,7 @@ function filterAsyncRouter(routes, roles) {
 }
 
 const permission = {
+  namespaced: true,
   state: {
     routers: constantRouterMap,
     addRouters: []
@@ -45,12 +46,11 @@ const permission = {
     }
   },
   actions: {
-    GenerateRoutes({ commit }, data) {
+    generateRoutes({ commit }, roles) {
       return new Promise(resolve => {
-        const { roles } = data
         const accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
         commit('SET_ROUTERS', accessedRouters)
-        resolve()
+        resolve(accessedRouters)
       })
     }
   }
