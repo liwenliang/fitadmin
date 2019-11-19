@@ -5,6 +5,7 @@
 > Copyright (c) 2019-present liwenliang
 
 > 原始的项目是：vue-admin-template
+>目前版本为 `v4.0+` 基于 `vue-cli` 进行构建，若你想使用旧版本，可以切换分支到[webpack-back](https://github.com/liwenliang/fitadmin/tree/webpack-back)，它不依赖 `vue-cli`。
 
 # vue-admin-template
 
